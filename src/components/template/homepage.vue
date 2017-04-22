@@ -29,7 +29,7 @@
     .layout-content{
         height: 550px;
         margin: 15px;
-        overflow: hidden;
+       /* overflow: hidden;*/
         background: #fff;
         border-radius: 4px;
     }
@@ -45,7 +45,7 @@
 <template>
     <div class="layout">
         <Menu mode="horizontal" active-name="1">
-            <div class="layout-logo"></div>
+            <div class="layout-logo"><p>New Day</p></div>
             <div class="layout-assistant">
                 <div style="width:200px;height:60px;background:red;"></div> 
             </div>
@@ -59,8 +59,9 @@
                                 <Icon type="ios-navigate"></Icon>
                                 导航一
                             </template>
-                            <router-link to="/setup"><Menu-item name="1-1">选项 1</Menu-item></router-link>
-                            <router-link to="/Homepage/"><Menu-item name="1-2">选项 2</Menu-item></router-link>
+                            <router-link to="/Homepage/"><Menu-item name="1-1">选项 1</Menu-item></router-link>
+                            <router-link to="/setup"><Menu-item name="1-2">选项 2</Menu-item></router-link>
+                       
                             <Menu-item name="1-3">选项 3</Menu-item>
                         </Submenu>
                         <Submenu name="2">
