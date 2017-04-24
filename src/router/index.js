@@ -34,11 +34,19 @@ export default new Router({
               component: resolve => require(['../components/page/setup.vue'], resolve)
           }
           ,
+
            {
               path: '/wode',
               name:'wode',
               component: resolve => require(['../components/page/wode.vue'], resolve)
           }
+
+            {
+              path: '/lzk',
+                name:'lzk',
+              component: resolve => require(['../components/page/lzk.vue'], resolve)
+            }
+
 	    ]
     }
   ]
