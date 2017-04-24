@@ -39,7 +39,7 @@ export default new Router({
               path: '/wode',
               name:'wode',
               component: resolve => require(['../components/page/wode.vue'], resolve)
-          }
+          },
 
             {
               path: '/lzk',
