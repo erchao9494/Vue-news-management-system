@@ -55,8 +55,8 @@
             <div class="layout-logo">new Day</div>
             <div class="layout-assistant">
                 <div style="width:150px;height:60px;float:right;">
-                  <span style="width:30px;height:30px;background:red;float:left;display:inline;border-radius:50%;margin:15px 10px 0 15px;"></span>
-                  <span style="float:left;width:90px;height:30px;overflow:hidden;line-height:30px;margin-top:15px;">Li zhi Jie</span>
+                  <span style="width:30px;height:30px;background:red;float:left;display:inline;border-radius:50%;margin:15px 10px 0 15px;overflow:hidden;border-radius:50%;"><img style="width:100%;height:100%;float:left;" v-bind:src="lzk_user.image"></span>
+                  <span style="float:left;width:90px;height:30px;overflow:hidden;line-height:30px;margin-top:15px;">{{lzk_user.nickname}}</span>
                 </div>
             </div>
         </Menu>
@@ -107,11 +107,11 @@
     export default {
         data (){
           return {
-
+		lzk_user:{}
           }
         },
         mounted:function(){
-          console.log(this.$route.params.a)
+          this.lzk_user = this.$route.query.num.body.req[0];
         }
     }
 </script>
