@@ -6,7 +6,10 @@
     .layout-logo{
         width: 100px;
         height: 30px;
-        background: #5b6270;
+        line-height:30px;
+        text-align:center;
+        font-size:20px;
+        color:pink;
         border-radius: 3px;
         float: left;
         position: relative;
@@ -27,9 +30,14 @@
         padding: 10px 15px 0;
     }
     .layout-content{
-        height: 550px;
+        min-height: 550px;
         margin: 15px;
+
        /* overflow: hidden;*/
+
+        margin-bottom:0px;
+        overflow: hidden;
+
         background: #fff;
         border-radius: 4px;
     }
@@ -41,19 +49,29 @@
         padding: 10px 0 20px;
         color: #9ea7b4;
     }
+    .ivu-menu-vertical.ivu-menu-light:after{
+      background:#fff;
+    }
 </style>
 <template>
     <div class="layout">
         <Menu mode="horizontal" active-name="1">
-            <div class="layout-logo"><p>New Day</p></div>
+
+     
+
+            <div class="layout-logo">New Day</div>
+
             <div class="layout-assistant">
-                <div style="width:200px;height:60px;background:red;"></div> 
+                <div style="width:150px;height:60px;float:right;">
+                  <span style="width:30px;height:30px;background:red;float:left;display:inline;border-radius:50%;margin:15px 10px 0 15px;"></span>
+                  <span style="float:left;width:90px;height:30px;overflow:hidden;line-height:30px;margin-top:15px;">Li zhi Jie</span>
+                </div>
             </div>
         </Menu>
         <div class="layout-content">
             <Row>
                 <i-col span="5">
-                    <Menu active-name="1-2" width="auto" :open-names="['1']" style="height:550px;">
+                    <Menu active-name="1-2" width="auto" :open-names="['1']" style="min-height:550px;">
                         <Submenu name="1">
                             <template slot="title">
                                 <Icon type="ios-navigate"></Icon>
@@ -61,8 +79,8 @@
                             </template>
                             <router-link to="/Homepage/"><Menu-item name="1-1">选项 1</Menu-item></router-link>
                             <router-link to="/setup"><Menu-item name="1-2">选项 2</Menu-item></router-link>
-                       
-                            <Menu-item name="1-3">选项 3</Menu-item>
+                            <router-link to="/wode"><Menu-item name="1-3">个人设置</Menu-item></router-link>
+                         
                         </Submenu>
                         <Submenu name="2">
                             <template slot="title">
@@ -82,8 +100,8 @@
                         </Submenu>
                     </Menu>
                 </i-col>
-                <i-col span="19">
-                    <div class="layout-content-main" style="height:550px;">
+                <i-col span="19" style="border-left:1px solid #ccc;">
+                    <div class="layout-content-main" style="min-height:550px;background:#fff;">
                         <transition name="move" mode="out-in"><router-view></router-view></transition>
                     </div>
                 </i-col>
@@ -96,6 +114,6 @@
 </template>
 <script>
     export default {
-        
+
     }
 </script>

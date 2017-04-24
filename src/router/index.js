@@ -12,6 +12,12 @@ export default new Router({
     }
     ,
     {
+      path: '/Registered',
+      name: 'Registered',
+      component: resolve => require(['../components/template/registered.vue'], resolve)
+    }
+    ,
+    {
       path: '/Homepage',
       name: 'Homepage',
       component: resolve => require(['../components/template/homepage.vue'], resolve),
@@ -26,6 +32,12 @@ export default new Router({
               path: '/setup',
               name:'setup',
               component: resolve => require(['../components/page/setup.vue'], resolve)
+          }
+          ,
+           {
+              path: '/wode',
+              name:'wode',
+              component: resolve => require(['../components/page/wode.vue'], resolve)
           }
 	    ]
     }
