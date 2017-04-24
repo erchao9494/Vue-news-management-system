@@ -84,7 +84,7 @@
                         console.log(reqs.body.flag)
                         if(reqs.body.flag == 2){
                             this.async = true;
-                            this.aleet = '登陆成功';
+                            this.aleet = '哈哈';
                             this.$router.push({path:'/Homepage',query:{num:reqs}});
                         }else if(reqs.body.flag == 3){
                             this.async = true;
