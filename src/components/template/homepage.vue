@@ -32,8 +32,12 @@
     .layout-content{
         min-height: 550px;
         margin: 15px;
+
+       /* overflow: hidden;*/
+
         margin-bottom:0px;
         overflow: hidden;
+
         background: #fff;
         border-radius: 4px;
     }
@@ -52,7 +56,11 @@
 <template>
     <div class="layout">
         <Menu mode="horizontal" active-name="1">
-            <div class="layout-logo">new Day</div>
+
+     
+
+            <div class="layout-logo">New Day</div>
+
             <div class="layout-assistant">
                 <div style="width:150px;height:60px;float:right;">
                   <span style="width:30px;height:30px;background:red;float:left;display:inline;border-radius:50%;margin:15px 10px 0 15px;overflow:hidden;border-radius:50%;"><img style="width:100%;height:100%;float:left;" v-bind:src="lzk_user.image"></span>
@@ -69,9 +77,10 @@
                                 <Icon type="ios-navigate"></Icon>
                                 导航一
                             </template>
-                            <router-link to="/setup"><Menu-item name="1-1">选项 1</Menu-item></router-link>
-                            <router-link to="/Homepage/"><Menu-item name="1-2">选项 2</Menu-item></router-link>
-                            <Menu-item name="1-3">选项 3</Menu-item>
+                            <router-link to="/Homepage/"><Menu-item name="1-1">选项 1</Menu-item></router-link>
+                            <router-link to="/setup"><Menu-item name="1-2">选项 2</Menu-item></router-link>
+                            <router-link to="/wode"><Menu-item name="1-3">个人设置</Menu-item></router-link>
+                         
                         </Submenu>
                         <Submenu name="2">
                             <template slot="title">
