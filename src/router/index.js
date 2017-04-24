@@ -33,6 +33,12 @@ export default new Router({
               name:'setup',
               component: resolve => require(['../components/page/setup.vue'], resolve)
           }
+          ,
+            {
+              path: '/lzk',
+                name:'lzk',
+              component: resolve => require(['../components/page/lzk.vue'], resolve)
+            }
 	    ]
     }
   ]

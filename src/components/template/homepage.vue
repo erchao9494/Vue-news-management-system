@@ -86,7 +86,7 @@
                                 <Icon type="ios-analytics"></Icon>
                                 导航三
                             </template>
-                            <Menu-item name="3-1">选项 1</Menu-item>
+                            <router-link to="/lzk"><Menu-item name="3-1">选项 1</Menu-item></router-link>
                             <Menu-item name="3-2">选项 2</Menu-item>
                         </Submenu>
                     </Menu>
@@ -105,6 +105,13 @@
 </template>
 <script>
     export default {
+        data (){
+          return {
 
+          }
+        },
+        mounted:function(){
+          console.log(this.$route.params.a)
+        }
     }
 </script>

@@ -85,7 +85,7 @@
                         if(reqs.body.flag == 2){
                             this.async = true;
                             this.aleet = '登陆成功';
-                            this.$router.push({path:'/Homepage'})
+                            this.$router.push({path:'/Homepage',params:{a:'122'}})
                         }else if(reqs.body.flag == 3){
                             this.async = true;
                             this.aleet = '账号或密码输入错误';
@@ -93,7 +93,6 @@
                             this.async = true;
                             this.aleet = '登陆失败';
                         }
-
                   })
                 }
             }
