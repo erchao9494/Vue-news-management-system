@@ -18,9 +18,9 @@
   left:50%;
   top:50%;
   width:400px;
-  margin:-250px 0 0 -215px;
+  margin:-200px 0 0 -215px;
   opacity:.6;
-  padding:20px 20px 20px 20px;
+  padding:0px 20px 20px 20px;
   transition:all 0.5s;
 }
 .lzk_logindl:hover{
@@ -34,6 +34,9 @@
   float:right;
   margin:10px 20px 0 0;
 }
+.lzk-input{
+width:310px;line-height:30px;
+}
 </style>
 <template>
     <div class="lzk_login">
@@ -43,17 +46,14 @@
         </video>
         <Card class="lzk_logindl">
               <div>
-                  <p>用户名</p>
-                  <p class="lzk_logp"><Input placeholder="" style="width:310px;"></Input></p>
-                  <p>密码</p>
-                  <p class="lzk_logp"><Input placeholder="" style="width:310px;"></Input></p>
-                  <p>邮箱</p>
-                  <p class="lzk_logp"><Input placeholder="" style="width:310px;"></Input></p>
-                  <p>昵称</p>
-                  <p class="lzk_logp"><Input placeholder="" style="width:310px;"></Input></p>
-                  <p>电话</p>
-                  <p class="lzk_logp"><Input placeholder="" style="width:310px;"></Input></p>
-                  <p class="lzk_logp" style="margin-top:15px;"><router-link to="/Homepage"><Button type="info" style="margin-right:12px;">注册</Button></router-link><a class="lzk_a" href="javascript:;"><router-link to="/">以注册? 去登陆</router-link></a></p>
+                <form>
+                  <p class="lzk_logp" style="margin-bottom:20px;font-size:20px;text-indent:2px;">注册</Input></p>
+                  <p class="lzk_logp"><Input type="text" v-model="user" class="lzk-input" icon="person" placeholder="用户名"></Input></p>
+                  <p class="lzk_logp"><Input type="password" v-model="pass" class="lzk-input" icon="ios-flower" placeholder="密码"></Input></p>
+                  <p class="lzk_logp"><Input type="text" v-model="email" class="lzk-input" icon="ios-email" placeholder="邮箱"></Input></p>
+                  <p class="lzk_logp"><Input type="text" v-model="nichen" class="lzk-input" icon="ios-paw" placeholder="昵称"></Input></p>
+                  <p class="lzk_logp" style="margin-top:15px;"><Button type="info" style="margin-right:12px;" @click="reg()">注册</Button><a class="lzk_a" href="javascript:;"><router-link to="/">以注册? 去登陆</router-link></a></p>
+                </form>
               </div>
         </Card>
     </div>
@@ -63,7 +63,26 @@
     export default {
         data (){
             return {
-
+               user:'',
+               pass:'',
+               email:'',
+               nichen:''
+            }
+        },
+        methods:{
+            reg:function(){
+              if(this.user == '' || this.pass == '' || this.email == '' || this.nichen == ''){
+                  alert('失败');
+              }else{
+                  this.$http.post('http://192.168.43.91:8020/supermarke/register',{
+                      username:this.user,
+                      password:this.pass,
+                      email:this.email,
+                      nickname:this.nichen
+                  },{emulateJSON:true}).then(function(reqs){
+                      alert('注册成功')
+                  })
+              }
             }
         }
     }

@@ -20,7 +20,7 @@
   width:400px;
   margin:-150px 0 0 -215px;
   opacity:.6;
-  padding:20px 20px 20px 20px;
+  padding:0px 20px 20px 20px;
   transition:all 0.5s;
 }
 .lzk_logindl:hover{
@@ -34,6 +34,9 @@
   float:right;
   margin:10px 20px 0 0;
 }
+.lzk_input{
+  line-height:30px;
+}
 </style>
 <template>
     <div class="lzk_login">
@@ -43,21 +46,56 @@
         </video>
         <Card class="lzk_logindl">
               <div>
-                  <p>用户名</p>
-                  <p class="lzk_logp"><Input placeholder="" style="width:310px;"></Input></p>
-                  <p>密码</p>
-                  <p class="lzk_logp"><Input placeholder="" style="width:310px;"></Input></p>
-                  <p class="lzk_logp" style="margin-top:15px;"><router-link to="/Homepage"><Button type="info" style="margin-right:12px;">登陆</Button></router-link><a class="lzk_a" href="javascript:;"><router-link to="/Registered">还没注册? 去注册</router-link></a></p>
+                <form>
+                  <p style="text-indent:2px;margin-bottom:20px;font-size:20px;">用户登陆</p>
+                  <p class="lzk_logp"><Input class="lzk_input" placeholder="用户名" icon="person" type="text" v-model="user"></Input></p>
+                  <p class="lzk_logp"><Input class="lzk_input" placeholder="密码" icon="ios-flower" type="password" v-model="pass"></Input></p>
+                  <p class="lzk_logp" style="margin-top:15px;"><Button type="info" @click="logins()" style="margin-right:12px;">登陆</Button><a class="lzk_a" href="javascript:;"><router-link to="/Registered">还没注册? 去注册</router-link></a></p>
+                </form>
               </div>
         </Card>
+        <Alert style="width:350px;margin:0 auto;" v-show="async">
+             <template slot="desc">{{aleet}}</template>
+        </Alert>
     </div>
+
 
 </template>
 <script>
     export default {
         data (){
             return {
+                user:'',
+                pass:''
+                ,aleet:'错误提示'
+                ,async:false
+            }
+        },
+        methods:{
+            logins:function(){
+                if(this.user == '' || this.pass == ''){
+                    this.async = true;
+                    this.aleet = '输入不能为空';
+                }else{
+                  this.$http.post('http://192.168.43.91:8020/supermarke/login',{
+                    username:this.user
+                    ,password:this.pass
+                  },{emulateJSON:true}).then(function(reqs){
+                        console.log(reqs.body.flag)
+                        if(reqs.body.flag == 2){
+                            this.async = true;
+                            this.aleet = '登陆成功';
+                            this.$router.push({path:'/Homepage'})
+                        }else if(reqs.body.flag == 3){
+                            this.async = true;
+                            this.aleet = '账号或密码输入错误';
+                        }else{
+                            this.async = true;
+                            this.aleet = '登陆失败';
+                        }
 
+                  })
+                }
             }
         }
     }
