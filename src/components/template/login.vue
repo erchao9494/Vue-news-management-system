@@ -77,12 +77,11 @@
                     this.async = true;
                     this.aleet = '输入不能为空';
                 }else{
-                  this.$http.post('http://192.168.43.91:8020/supermarke/login',{
-                    username:this.user
-                    ,password:this.pass
+                  this.$http.post('http://192.168.43.202:8005/supermarke/login',{
+                    uname:this.user
+                    ,pwd:this.pass
                   },{emulateJSON:true}).then(function(reqs){
-                        console.log(reqs.body.flag)
-                        if(reqs.body.flag == 2){
+                        if(reqs.body.flag == 1){
                             this.async = true;
                             this.aleet = '哈哈';
                             this.$router.push({path:'/Homepage',query:{num:reqs}});

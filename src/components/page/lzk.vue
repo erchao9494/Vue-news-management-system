@@ -27,6 +27,7 @@
 </template>
 
 <script>
+	import { quillEditor } from 'vue-quill-editor'
     export default {
         data: function(){
             return {
@@ -45,18 +46,24 @@
                 biaoti:''
             }
         },
+        components: {
+            quillEditor                                     // 声明组件quillEditor
+        },
+        mounted:function(){
+
+        },
         methods:{
             xx:function(){
                  if(this.quill == "" || this.leixing == "" || this.biaoti == ""){
                         alert('输入不能为空')
                  }else{
-                     this.$http.post('http://192.168.43.91:8020/supermarke/list',{
+                     this.$http.post('http://192.168.43.202:8005/supermarke/tianjia',{
                         img:'123',
-                        nicheng:'123',
-                        uid:'123',
+                        nicheng:'lizhikai',
+                        uid:'1',
                         biaoti:this.biaoti,
-                        neiron:this.quill,
-                        times:'2017-10-11',
+                        neirong:this.quill,
+                        fabushijian:new Date().getTime(),
                         leixing:this.leixing
                      },{emulateJSON:true}).then(function(reqs){
                         console.log(reqs)

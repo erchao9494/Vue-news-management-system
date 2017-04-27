@@ -98,16 +98,16 @@
 					<a href="javascript:;">黄瓜</a>
 				</li>
 				<li>昵称:
-					<Input v-model="value" placeholder="请输入..." style="width: 300px;margin-left:10px;"></Input>
+					<Input placeholder="请输入..." style="width: 300px;margin-left:10px;"></Input>
 				</li>
 				
 				<li>密码:
-					<Input v-model="value" placeholder="请输入..." style="width: 300px;margin-left:10px;"></Input>
+					<Input placeholder="请输入..." style="width: 300px;margin-left:10px;"></Input>
 				</li>
 				<li>邮箱:
-					<Input v-model="value" placeholder="请输入..." style="width: 300px;margin-left:10px;"></Input>
+					<Input placeholder="请输入..." style="width: 300px;margin-left:10px;"></Input>
 				</li>
-				
+
 				 <li><Button type="primary" @click="info" style="width:100px;">确定</Button></li>
 			</div>
 		</div>

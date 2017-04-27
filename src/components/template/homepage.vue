@@ -56,15 +56,11 @@
 <template>
     <div class="layout">
         <Menu mode="horizontal" active-name="1">
-
-     
-
             <div class="layout-logo">New Day</div>
-
             <div class="layout-assistant">
                 <div style="width:150px;height:60px;float:right;">
-                  <span style="width:30px;height:30px;background:red;float:left;display:inline;border-radius:50%;margin:15px 10px 0 15px;overflow:hidden;border-radius:50%;"><img style="width:100%;height:100%;float:left;" v-bind:src="lzk_user.image"></span>
-                  <span style="float:left;width:90px;height:30px;overflow:hidden;line-height:30px;margin-top:15px;">{{lzk_user.nickname}}</span>
+                  <span style="width:30px;height:30px;background:red;float:left;display:inline;border-radius:50%;margin:15px 10px 0 15px;overflow:hidden;border-radius:50%;"><img style="width:100%;height:100%;float:left;" v-bind:src="lzk_user.img"></span>
+                  <span style="float:left;width:90px;height:30px;overflow:hidden;line-height:30px;margin-top:15px;">{{lzk_user.nicheng}}</span>
                 </div>
             </div>
         </Menu>
@@ -120,7 +116,7 @@
           }
         },
         mounted:function(){
-          this.lzk_user = this.$route.query.num.body.req[0];
+          this.lzk_user = this.$route.query.num.body.result[0];
         }
     }
 </script>

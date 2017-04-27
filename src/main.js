@@ -9,7 +9,6 @@ import VueResource from 'vue-resource'
 import Vuex from 'vuex'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
-import VueQuillEditor from 'vue-quill-editor'
 
 Vue.config.productionTip = false
 
@@ -17,7 +16,6 @@ Vue.use(Vuex)
 Vue.use(iView)
 Vue.use(VueResource)
 Vue.use(Validator)
-Vue.use(VueQuillEditor)
 
 /* eslint-disable no-new */
 new Vue({

@@ -371,7 +371,7 @@
 		},
 		
 		mounted: function() {
-			this.cartView();
+			//this.cartView();
 		}
 
 	}
