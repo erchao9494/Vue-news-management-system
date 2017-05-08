@@ -9,6 +9,7 @@ import VueResource from 'vue-resource'
 import Vuex from 'vuex'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+import VueForm from 'vue-form'
 
 Vue.config.productionTip = false
 
@@ -16,6 +17,9 @@ Vue.use(Vuex)
 Vue.use(iView)
 Vue.use(VueResource)
 Vue.use(Validator)
+Vue.use(VueForm)
+
+require('./assets/md5.js')
 
 /* eslint-disable no-new */
 new Vue({

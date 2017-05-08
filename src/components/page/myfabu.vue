@@ -106,7 +106,7 @@
 		width: 100%;
 		background: lightgoldenrodyellow;
 		padding: 15px 60px;
-		overflow:auto;
+		overflow: auto;
 	}
 	
 	.fabiao {
@@ -259,7 +259,7 @@
 	<div id="shouye">
 
 		<div class="sousuo">
-            
+
 			<Button type="success"  @click="jishu()" style="float:left;margin-right:10px;">技术分享</Button>
 			<Button type="success"  @click="mianshi()" style="float:left;">生活趣事</Button>
            
@@ -271,32 +271,28 @@
 		<ul class="liebiao">
 			<li v-for="(i,$index) in arr" @click="dian(i.id)">
                 <div class="img">
-                	<img v-bind:src="lzk_images+i.img" alt="" />
+                	<img v-bind:src="lzk_image+i.img" alt="" />
                 </div>
 				<a class="nicheng">{{i.nicheng}}</a>
 
 				<h2 style="margin-left:70px;">{{i.biaoti}}</h2>
 
 				<p style="margin-left:70px;">发布时间：{{i.fabushijian | time}}</p>
-				<span v-if="xchen" @click="del(i.id)">x</span>
+				<span @click="del(i.id)">x</span>
 
 			</li>
 
 		</ul>
-		<div class="fenye">
-			
-			<Page :total="zongtiao" :page-size="meiyetiao" show-total @on-change="change" style="width:400px;height:30px;margin:0 auto"></Page>
-		</div>
+		
 
 	</div>
 
 </template>
 <script>
-	import { formatDate } from '../../assets/formDate.js'
 	export default {
 		data() {
 			return {
-				time:1469281964000,
+
 				value: '',
 				arr: [],
 				page: 1,
@@ -305,16 +301,15 @@
 				meiyetiao: 1,
 				vue:'vue',
 				vue1:'代码',
-				xchen:false,
-				lzk_images:"http://192.168.43.202:8005/images/"
+				lzk_image:"http://192.168.43.202:8005/images/"
 			}
 		},
 		methods: {
 			//			获取列表
 			json: function(page) {
-				this.$http.get('http://192.168.43.202:8005/supermarke/fenye?pageNum=' + this.page).then(function(e) {
+				this.$http.get('http://192.168.43.202:8005/supermarke/shou?id=17').then(function(e) {
 					console.log(e.body)
-					this.arr = e.body.list
+					this.arr = e.body
 					this.zong = e.body.totalPage
 					this.zongtiao = e.body.total
 					this.meiyetiao = e.body.pageSize
@@ -323,12 +318,12 @@
 			},
 			// 点击查看详情
 			dian: function(id) {
-				this.$router.push({
-					path: '/homepage/',
-					query: {
-						num: id
-					}
-				})
+								this.$router.push({
+									path: '/homepage/',
+									query: {
+										num: id
+									}
+								})
 			},
 			//  删除
 			del: function(id) {
@@ -342,8 +337,7 @@
 					}
 					this.$http.get('http://192.168.43.202:8005/supermarke/fenye?pageNum=' + this.page).then(function(e) {
 						
-						this.arr = e.body.list;
-						this.arr.reverse();
+						this.arr = e.body.list
 						this.zong = e.body.totalPage
 						this.zongtiao = e.body.total
 						this.meiyetiao = e.body.pageSize
@@ -354,46 +348,48 @@
 			},
 			//搜索
 			search: function() {
+			
 				this.$http.get('http://192.168.43.202:8005/supermarke/sousuo?biaoti=' + this.value).then(function(e) {
+					
 					this.arr = e.body
-				})
-			},
-			//技术分析
-			jishu: function() {
-				this.$http.get('http://192.168.43.202:8005/supermarke/sousuo?biaoti=' + this.vue).then(function(e) {
-		
-					this.arr = e.body
-	
-				})
-			},
-//			面试
-			mianshi: function() {
-				this.$http.get('http://192.168.43.202:8005/supermarke/sousuo?biaoti=' + this.vue1).then(function(e) {		
-					this.arr = e.body
-	
-				})
-			},
-			// 分页
-			change: function(page) {
-				this.$http.get('http://192.168.43.202:8005/supermarke/fenye?pageNum=' + page).then(function(e) {
-					this.arr = e.body.list
-					this.zong = e.body.totalPage
-					this.zongtiao = e.body.total
-					this.meiyetiao = e.body.pageSize
+				
 
+					
+				})
+			},
+			//技术分享
+			jishu: function() {
+			
+				this.$http.get('http://192.168.43.202:8005/supermarke/sousuo?biaoti=' + this.vue).then(function(e) {
+					
+					this.arr = e.body
+				
+
+					
+				})
+			},
+//			生活趣事
+			mianshi: function() {
+			
+				this.$http.get('http://192.168.43.202:8005/supermarke/sousuo?biaoti=' + this.vue1).then(function(e) {
+					
+					this.arr = e.body
+				
+
+					
 				})
 			}
+		
+
 		},
+
 		mounted: function() {
-			this.json();
-			if(sessionStorage.id == 17){
-				this.xchen = true;
-			}
+			this.json()
 		},
+//		时间过滤器
 		filters: {
 			time: function(value) {
 
-				//				return new Date(parseInt(value) / 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
 				function add0(m) {
 					return m < 10 ? '0' + m : m
 				}
@@ -405,7 +401,6 @@
 				return y + '.' + add0(m) + '.' + add0(d);
 			}
 		}
-
 
 	}
 </script>

@@ -48,11 +48,22 @@ width:310px;line-height:30px;
               <div>
                 <form>
                   <p class="lzk_logp" style="margin-bottom:20px;font-size:20px;text-indent:2px;">注册</Input></p>
-                  <p class="lzk_logp"><Input type="text" v-model="user" class="lzk-input" icon="person" placeholder="用户名" ></Input></p>
-                  <p class="lzk_logp"><Input type="password" v-model="pass" class="lzk-input" icon="ios-flower" placeholder="密码"></Input></p>
-                  <p class="lzk_logp"><Input type="text" v-model="email" class="lzk-input" icon="ios-email" placeholder="邮箱"></Input></p>
-                  <p class="lzk_logp"><Input type="text" v-model="nichen" class="lzk-input" icon="ios-paw" placeholder="昵称"></Input></p>
-                  <p class="lzk_logp" style="margin-top:15px;"><Button type="info" style="margin-right:12px;" @click="reg()">注册</Button><a class="lzk_a" href="javascript:;"><router-link to="/">以注册? 去登陆</router-link></a></p>
+                  <p class="lzk_logp">
+                  	<Input type="text" v-model="user" class="lzk-input" icon="person" placeholder="用户名" ></Input>
+                  </p>
+                  <p class="lzk_logp">
+                  	<Input type="password" v-model="pass" class="lzk-input" icon="ios-flower" placeholder="密码"></Input>
+                  </p>
+                  <p class="lzk_logp">
+                  	<Input type="text" v-model="email" class="lzk-input" icon="ios-email" placeholder="邮箱"></Input>
+                  </p>
+                  <p class="lzk_logp">
+                  	<Input type="text" v-model="nichen" class="lzk-input" icon="ios-paw" placeholder="昵称"></Input>
+                  </p>
+                  <p class="lzk_logp" style="margin-top:15px;">
+                  	<Button type="info" style="margin-right:12px;" @click="onSubmit()">注册</Button>
+                  	<a class="lzk_a" href="javascript:;"><router-link to="/">以注册? 去登陆</router-link></a>
+                  </p>
                 </form>
 							</div>
         </Card>
@@ -61,28 +72,47 @@ width:310px;line-height:30px;
 
 </template>
 <script>
-  
     export default {
         data (){
             return {
                user:'',
                pass:'',
                email:'',
-               nichen:''
+               nichen:'',
+               myreg:/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/, 
+               myuse:/^[\u4e00-\u9fa5]+$/,
             }
         },
         methods:{
-            reg:function(){
-              if(this.user == '' || this.pass == '' || this.email == '' || this.nichen == ''){
+            onSubmit:function(){
+              if(this.user == '' || this.pass == '' || this.email == '' || this.nichen == '')
+              {
                   alert('失败');
-              }else{
+              }
+              else if(!this.myreg.test(this.email))
+              {
+              	alert('请输入有效的Email')
+              }
+              else if(this.myuse.test(this.user))
+              {
+              	alert('用户名不可以为中文')
+              }
+              else
+              {
                   this.$http.post('http://192.168.43.202:8005/supermarke/register',{
                       uname:this.user,
                       pwd:this.pass,
                       email:this.email,
                       nicheng:this.nichen
                   },{emulateJSON:true}).then(function(reqs){
-                      console.log(reqs)
+                       
+                       this.user = '';
+				               this.pass = '';
+				               this.email = '';
+				               this.nichen = '';
+				               if(reqs.body.flag == 1){
+				               		alert('成功')
+				               }
                   })
               }
             },

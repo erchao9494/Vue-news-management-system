@@ -59,8 +59,8 @@
             <div class="layout-logo">New Day</div>
             <div class="layout-assistant">
                 <div style="width:150px;height:60px;float:right;">
-                  <span style="width:30px;height:30px;background:red;float:left;display:inline;border-radius:50%;margin:15px 10px 0 15px;overflow:hidden;border-radius:50%;"><img style="width:100%;height:100%;float:left;" v-bind:src="lzk_user.img"></span>
-                  <span style="float:left;width:90px;height:30px;overflow:hidden;line-height:30px;margin-top:15px;">{{lzk_user.nicheng}}</span>
+                  <span style="width:30px;height:30px;background:red;float:left;display:inline;border-radius:50%;margin:15px 10px 0 15px;overflow:hidden;border-radius:50%;"><img style="width:100%;height:100%;float:left;" v-bind:src=lzk_img></span>
+                  <span style="float:left;width:90px;height:30px;overflow:hidden;line-height:30px;margin-top:15px;">{{lzk_nicheng}}</span>
                 </div>
             </div>
         </Menu>
@@ -71,28 +71,28 @@
                         <Submenu name="1">
                             <template slot="title">
                                 <Icon type="ios-navigate"></Icon>
-                                导航一
+                                新闻中心
                             </template>
-                            <router-link to="/Homepage/"><Menu-item name="1-1">选项 1</Menu-item></router-link>
-                            <router-link to="/setup"><Menu-item name="1-2">选项 2</Menu-item></router-link>
-                            <router-link to="/wode"><Menu-item name="1-3">个人设置</Menu-item></router-link>
+                            
+                            <router-link to="/setup"><Menu-item name="1-1">新闻列表</Menu-item></router-link>
+                            <router-link to="/myfabu"><Menu-item name="1-2">我的新闻</Menu-item></router-link>
                          
                         </Submenu>
-                        <Submenu name="2">
+                        <!--<Submenu name="2">
                             <template slot="title">
                                 <Icon type="ios-keypad"></Icon>
                                 导航二
                             </template>
                             <Menu-item name="2-1">选项 1</Menu-item>
                             <Menu-item name="2-2">选项 2</Menu-item>
-                        </Submenu>
+                        </Submenu>-->
                         <Submenu name="3">
                             <template slot="title">
                                 <Icon type="ios-analytics"></Icon>
-                                导航三
+                                我的
                             </template>
-                            <router-link to="/lzk"><Menu-item name="3-1">选项 1</Menu-item></router-link>
-                            <Menu-item name="3-2">选项 2</Menu-item>
+                            <router-link to="/lzk"><Menu-item name="3-1">发布新闻</Menu-item></router-link>
+                            <router-link to="/wode"><Menu-item name="3-2">个人设置</Menu-item></router-link>
                         </Submenu>
                     </Menu>
                 </i-col>
@@ -104,7 +104,7 @@
             </Row>
         </div>
         <div class="layout-copy">
-            2011-2016 &copy; TalkingData
+            &copy 2017 mi si  L C S
         </div>
     </div>
 </template>
@@ -112,11 +112,20 @@
     export default {
         data (){
           return {
-		lzk_user:{}
+			lzk_uname:'',
+			lzk_nicheng:'',
+			lzk_img:''
           }
         },
         mounted:function(){
-          this.lzk_user = this.$route.query.num.body.result[0];
+        	if(sessionStorage.img == 'null'){
+        		this.lzk_img = "/static/img/001.a7367c7.jpg";
+        		sessionStorage.img = "/static/img/001.a7367c7.jpg";
+        	}else{
+        		this.lzk_img = 'http://192.168.43.202:8005/images/'+sessionStorage.img;
+        	}
+          	
+          	this.lzk_nicheng = sessionStorage.nicheng;
         }
     }
 </script>

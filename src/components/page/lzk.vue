@@ -22,7 +22,7 @@
           v-model="quill"
           style="height:280px;"></quill-editor>
         </div>
-        <p class="lzk_xw"><Button type="info" @click="xx()">发布新闻</Button></p>
+        <p class="lzk_xw"><Button type="info" @click="pushNews()">发布新闻</Button></p>
     </div>
 </template>
 
@@ -34,8 +34,8 @@
                 quill:'',
                 cityList: [
                     {
-                        value: '面试题',
-                        label: '面试题'
+                        value: '生活趣事',
+                        label: '生活趣事'
                     },
                     {
                         value: '技术分享',
@@ -53,20 +53,27 @@
 
         },
         methods:{
-            xx:function(){
+            pushNews:function(){
                  if(this.quill == "" || this.leixing == "" || this.biaoti == ""){
                         alert('输入不能为空')
                  }else{
                      this.$http.post('http://192.168.43.202:8005/supermarke/tianjia',{
-                        img:'123',
-                        nicheng:'lizhikai',
-                        uid:'1',
+                        img:sessionStorage.img,
+                        nicheng:sessionStorage.nicheng,
+                        uid:sessionStorage.id,
                         biaoti:this.biaoti,
                         neirong:this.quill,
                         fabushijian:new Date().getTime(),
                         leixing:this.leixing
                      },{emulateJSON:true}).then(function(reqs){
-                        console.log(reqs)
+                        if(reqs.body.flag == 1){
+                        	alert('成功')
+                        	this.$router.push({
+									path: '/setup'
+							})
+                        }else{
+                        	alert('失败')
+                        }
                      })
                  }
             }

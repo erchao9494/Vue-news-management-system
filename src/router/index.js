@@ -41,11 +41,17 @@ export default new Router({
               component: resolve => require(['../components/page/wode.vue'], resolve)
           },
 
-            {
-              path: '/lzk',
-                name:'lzk',
-              component: resolve => require(['../components/page/lzk.vue'], resolve)
-            }
+	        {
+	          path: '/lzk',
+	            name:'lzk',
+	          component: resolve => require(['../components/page/lzk.vue'], resolve)
+	        },
+
+	        {
+	          path: '/myfabu',
+	            name:'myfabu',
+	          component: resolve => require(['../components/page/myfabu.vue'], resolve)
+	        }
 
 	    ]
     }
