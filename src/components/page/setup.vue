@@ -402,7 +402,7 @@
 				var m = time.getMonth() + 1;
 				var d = time.getDate();
 
-				return y + '.' + add0(m) + '.' + add0(d);
+				return y + '/' + add0(m) + '/' + add0(d);
 			}
 		}
 
