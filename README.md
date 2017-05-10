@@ -1,6 +1,6 @@
 # orange
 
-> 'xinwenguanlixitong'
+> 'xxx'
 
 ## Build Setup
 
